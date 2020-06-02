@@ -1,3 +1,3 @@
-from rx import Observable
+from rx import from_
 
-letters = Observable.from_(["Alpha","Beta","Gamma","Delta","Epsilon"])
+letters = from_(["Alpha", "Beta", "Gamma", "Delta", "Epsilon"])
