@@ -1,6 +1,6 @@
-from rx import Observable
+from rx import empty
 
-Observable.empty() \
+empty() \
     .subscribe(on_next= lambda s: print(s),
                on_completed= lambda: print("Done!")
                )

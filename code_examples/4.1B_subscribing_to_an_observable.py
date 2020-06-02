@@ -1,5 +1,9 @@
 from rx import Observable, Observer
 
+
+# TODO refactor this code which no longer works with Python 3.7 and current RxPy
+
+
 letters = Observable.from_(["Alpha","Beta","Gamma","Delta","Epsilon"])
 
 
