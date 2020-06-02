@@ -2,5 +2,7 @@ Resources for the O'Reilly Media online video as well as webcast [_Reactive Pyth
 
 [![](http://akamaicovers.oreilly.com/images/0636920064237/lrg.jpg)](https://www.safaribooksonline.com/library/view/reactive-python-for/9781491979006/))
 
+Modifications by Brian Merritt for Python 3.7+ and rxpy newer releases
+
 
 
