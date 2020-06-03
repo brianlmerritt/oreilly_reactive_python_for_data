@@ -2,17 +2,22 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
 import json
-from rx import Observable
+from rx import create, operators as ops
+from dotenv import load_dotenv
+import os
+import sys
 
 # Variables that contains the user credentials to access Twitter API
-access_token = "PUT YOURS HERE"
-access_token_secret = "PUT YOURS HERE"
-consumer_key = "PUT YOURS HERE"
-consumer_secret = "PUT YOURS HERE"
+load_dotenv()
+
+access_token = os.environ.get("access_token")
+access_token_secret = os.environ.get("access_token_secret")
+consumer_key = os.environ.get("consumer_key")
+consumer_secret = os.environ.get("consumer_secret")
 
 
 def tweets_for(topics):
-    def observe_tweets(observer):
+    def observe_tweets(observer, scheduler):
         class TweetListener(StreamListener):
             def on_data(self, data):
                 observer.on_next(data)
@@ -28,11 +33,13 @@ def tweets_for(topics):
         stream = Stream(auth, l)
         stream.filter(track=topics)
 
-    return Observable.create(observe_tweets).share()
+    return create(observe_tweets).pipe(ops.share())
 
 
-topics = ['Britain', 'France']
+topics = sys.argv[1:]
+if len(topics) < 1:
+    topics = ['SpaceX', 'Covid-19']
 
-tweets_for(topics) \
-    .map(lambda d: json.loads(d)) \
-    .subscribe(on_next=lambda s: print(s), on_error=lambda e: print(e))
+tweets_for(topics).pipe(
+    ops.map(lambda d: json.loads(d))
+).subscribe(on_next=lambda s: print(s), on_error=lambda e: print(e))

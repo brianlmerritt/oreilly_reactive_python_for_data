@@ -38,12 +38,10 @@ def tweets_for(topics):
 
 topics = sys.argv[1:]
 if len(topics) < 1:
-    topics = ['SpaceX','Covid-19']
+    topics = ['SpaceX', 'Covid-19']
 
 tweets_for(topics).pipe(
     ops.map(lambda d: json.loads(d)),
     ops.filter(lambda map: "text" in map),
     ops.map(lambda map: map["text"].strip())
 ).subscribe(lambda s: print(s))
-
-input("Press any key to quit")

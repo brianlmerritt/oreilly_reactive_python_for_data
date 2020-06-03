@@ -1,7 +1,10 @@
-from rx import Observable
+from rx import interval, operators as ops
 import time
 
-source = Observable.interval(1000).publish().ref_count()
+source = interval(1).pipe(
+    ops.publish(),
+    ops.ref_count()
+)
 
 source.subscribe(lambda s: print("Subscriber 1: {0}".format(s)))
 

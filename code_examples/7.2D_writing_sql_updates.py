@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, text
 from rx import from_, operators as ops, just
 
 
-engine = create_engine('sqlite:///rexon_metals.db')
+engine = create_engine('sqlite:///../resources/rexon_metals.db')
 conn = engine.connect()
 
 
