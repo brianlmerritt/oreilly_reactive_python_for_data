@@ -4,7 +4,7 @@
 from rx import from_, interval, operators as ops
 import re
 
-# Todo getting to_dict no attribute error
+# Todo suffering from group_by -> flatmap issue
 
 def words_from_file(file_name):
     file = open(file_name)
@@ -31,7 +31,9 @@ def word_counter(file_name):
 
 # composes the above word_counter() into a dict
 def word_counter_as_dict(file_name):
-    return word_counter(file_name).to_dict(lambda t: t[0], lambda t: t[1])
+    return word_counter(file_name).pipe(
+        ops.to_dict(lambda t: t[0], lambda t: t[1])
+    )
 
 
 # Schedule to create a word count dict every three seconds an article

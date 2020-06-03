@@ -1,7 +1,7 @@
 from rx import from_, operators as ops
 import re
 
-# TODO not working yet - probably missing subscribe between words_from_file and word_counter
+# Todo suffering from group_by -> flatmap issue
 
 def words_from_file(file_name):
     file = open(file_name)
