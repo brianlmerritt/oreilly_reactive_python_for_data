@@ -1,5 +1,5 @@
-from rx import Observable
+from rx import from_, operators as ops
 
-Observable.from_([4,76,22,66,881,13,35]) \
-    .scan(lambda total, value: total + value) \
-    .subscribe(lambda s: print(s))
+from_([4,76,22,66,881,13,35]).pipe(
+    ops.scan(lambda total, value: total + value)
+).subscribe(lambda s: print(s))

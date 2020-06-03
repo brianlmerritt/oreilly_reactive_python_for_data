@@ -1,6 +1,6 @@
-from rx import Observable
+from rx import from_, operators as ops
 
-Observable.from_([4,76,22,66,881,13,35]) \
-    .filter(lambda i: i < 100) \
-    .reduce(lambda total, value: total + value) \
-    .subscribe(lambda s: print(s))
+from_([4, 76, 22, 66, 881, 13, 35]).pipe(
+    ops.filter(lambda i: i < 100),
+    ops.reduce(lambda total, value: total + value)
+).subscribe(lambda s: print(s))

@@ -1,6 +1,6 @@
-from rx import Observable
+from rx import from_, operators as ops
 
-Observable.from_(["Alpha","Beta","Gamma","Delta","Epsilon"]) \
-    .filter(lambda s: len(s) != 5) \
-    .count() \
-    .subscribe(lambda i: print(i))
+from_(["Alpha","Beta","Gamma","Delta","Epsilon"]).pipe(
+    ops.filter(lambda s: len(s) != 5),
+    ops.count()
+).subscribe(lambda i: print(i))
