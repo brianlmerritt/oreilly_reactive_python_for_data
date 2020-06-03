@@ -1,9 +1,9 @@
-from rx import Observable
+from rx import from_, zip, interval
 
-letters = Observable.from_(["Alpha","Beta","Gamma","Delta","Epsilon"])
-intervals = Observable.interval(1000)
+letters = from_(["Alpha", "Beta", "Gamma", "Delta", "Epsilon"])
+intervals = interval(1)
 
-Observable.zip(letters,intervals, lambda s,i: s) \
-    .subscribe(lambda s: print(s))
+# The code below includes l_n tuple unpacking (Python 3 doesn't support that out of the box, hence l_i[0])
+zip(letters, intervals).subscribe(lambda l_i: print(l_i[0]))
 
 input("Press any key to quit\n")

@@ -1,7 +1,6 @@
-from rx import Observable
+from rx import from_, merge
 
-source1 = Observable.from_(["Alpha","Beta","Gamma","Delta","Epsilon"])
-source2 = Observable.from_(["Zeta","Eta","Theta","Iota"])
+source1 = from_(["Alpha", "Beta", "Gamma", "Delta", "Epsilon"])
+source2 = from_(["Zeta", "Eta", "Theta", "Iota"])
 
-Observable.merge(source1,source2) \
-    .subscribe(lambda s: print(s))
+merge(source1, source2).subscribe(lambda s: print(s))

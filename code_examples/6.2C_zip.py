@@ -1,7 +1,7 @@
-from rx import Observable
+from rx import from_, zip, operators as ops
 
-letters = Observable.from_(["A","B","C","D","E","F"])
-numbers = Observable.range(1,5)
+letters = from_(["A", "B", "C", "D", "E", "F"])
+numbers = from_(range(1, 5))
 
-Observable.zip(letters,numbers, lambda l,n: "{0}-{1}".format(l,n)) \
-    .subscribe(lambda i: print(i))
+# The code below includes l_n tuple unpacking (Python 3 doesn't support that out of the box, hence l_n[0] etc
+zip(letters, numbers).subscribe(lambda l_n: print("{0}-{1}".format(l_n[0], l_n[1])))

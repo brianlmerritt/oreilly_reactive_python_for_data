@@ -1,12 +1,12 @@
-from rx import Observable
+from rx import from_, interval, operators as ops
 
-source1 = Observable.interval(1000).map(lambda i: "Source 1: {0}".format(i))
-source2 = Observable.interval(500).map(lambda i: "Source 2: {0}".format(i))
-source3 = Observable.interval(300).map(lambda i: "Source 3: {0}".format(i))
+source1 = interval(10).pipe(ops.map(lambda i: "Source 1: {0}".format(i)))
+source2 = interval(5).pipe(ops.map(lambda i: "Source 2: {0}".format(i)))
+source3 = interval(3).pipe(ops.map(lambda i: "Source 3: {0}".format(i)))
 
-Observable.from_([source1,source2,source3]) \
-    .merge_all() \
-    .subscribe(lambda s: print(s))
+from_([source1, source2, source3]).pipe(
+    ops.merge_all()
+).subscribe(lambda s: print(s))
 
 # keep application alive until user presses a key
 input("Press any key to quit\n")
