@@ -1,5 +1,5 @@
-from rx import Observable
+from rx import from_, operators as ops
 
-Observable.from_(["Alpha","Beta","Gamma","Delta","Epsilon"]) \
-    .filter(lambda s: len(s) >= 5) \
-    .subscribe(lambda s: print(s))
+from_(["Alpha", "Beta", "Gamma", "Delta", "Epsilon"]).pipe(
+    ops.filter(lambda s: len(s) >= 5)
+).subscribe(lambda s: print(s))

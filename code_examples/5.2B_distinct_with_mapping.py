@@ -1,5 +1,5 @@
-from rx import Observable
+from rx import from_, operators as ops
 
-Observable.from_(["Alpha", "Beta", "Gamma", "Delta", "Epsilon"]) \
-    .distinct(lambda s: len(s)) \
-    .subscribe(lambda i: print(i))
+from_(["Alpha", "Beta", "Gamma", "Delta", "Epsilon"]).pipe(
+    ops.distinct(lambda s: len(s))
+).subscribe(lambda i: print(i))

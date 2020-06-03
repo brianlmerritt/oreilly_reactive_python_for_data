@@ -1,6 +1,6 @@
-from rx import Observable
+from rx import from_, operators as ops
 
-Observable.from_(["Alpha", "Beta", "Gamma", "Delta", "Epsilon"]) \
-    .map(lambda s: len(s)) \
-    .distinct() \
-    .subscribe(lambda i: print(i))
+from_(["Alpha", "Beta", "Gamma", "Delta", "Epsilon"]).pipe(
+    ops.map(lambda s: len(s)),
+    ops.distinct()
+).subscribe(lambda i: print(i))
