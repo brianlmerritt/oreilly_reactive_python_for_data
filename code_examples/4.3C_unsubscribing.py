@@ -1,9 +1,9 @@
-from rx import Observable
+from rx import interval, operators as ops
 import time
 
-disposable = Observable.interval(1000) \
-    .map(lambda i: "{0} Mississippi".format(i)) \
-    .subscribe(lambda s: print(s))
+disposable = interval(1).pipe(
+    ops.map(lambda i: "{0} Mississippi".format(i))
+).subscribe(lambda s: print(s))
 
 # sleep 5 seconds so Observable can fire
 time.sleep(5)

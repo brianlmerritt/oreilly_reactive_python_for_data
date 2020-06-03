@@ -1,21 +1,16 @@
-from rx import Observable, Observer
+from rx import create, from_
 
 
-# TODO refactor this code which no longer works with Python 3.7 and current RxPy
+def MySubscriber(observer, scheduler):
+    observer.on_next(for x in ["Alpha", "Beta", "Gamma","Delta","Epsilon"]:
+        yield x)
+    observer.on_error("Error occured")
+    observer.on_completed()
 
+MyObserver = create(MySubscriber)
 
-letters = Observable.from_(["Alpha","Beta","Gamma","Delta","Epsilon"])
-
-
-class MySubscriber(Observer):
-    def on_next(self, value):
-        print(value)
-
-    def on_completed(self):
-        print("Completed!")
-
-    def on_error(self, error):
-        print("Error occured: {0}".format(error))
-
-
-letters.subscribe(MySubscriber())
+MyObserver.subscribe(
+    on_next = lambda value: print(value),
+    on_completed = lambda void: print("Completed"),
+    on_error = lambda error: print("Error occured: {0}".format(error))
+)
