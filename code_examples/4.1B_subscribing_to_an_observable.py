@@ -1,6 +1,4 @@
-from rx import create, from_callable
-
-#  TODO fix this - Alpha is generated but followed by Completed
+from rx import create
 
 def MySubscriber(observer, scheduler):
     observer.on_next("Alpha")
